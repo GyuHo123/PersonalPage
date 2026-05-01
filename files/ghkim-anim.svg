@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="1200" height="420" viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated ghkim.dev line signature">
+  <title>Animated ghkim.dev line signature</title>
+  <desc>Original hand-drawn line animation for the ghkim.dev homepage.</desc>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    path {
+      fill: none;
+      stroke: #f3f3f3;
+      stroke-width: 34;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pathLength: 1;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw-signature 5.6s ease-in-out infinite alternate;
+    }
+    path:nth-child(2) { animation-delay: 0.12s; }
+    path:nth-child(3) { animation-delay: 0.24s; }
+    path:nth-child(4) { animation-delay: 0.36s; }
+    path:nth-child(5) { animation-delay: 0.48s; }
+    path:nth-child(6) { animation-delay: 0.60s; }
+    path:nth-child(7) { animation-delay: 0.72s; }
+    .accent {
+      stroke: #f79b12;
+      stroke-width: 24;
+    }
+    @keyframes draw-signature {
+      0% {
+        stroke-dashoffset: 1;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      46%, 100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      path {
+        animation: none;
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+  <g opacity="0.96">
+    <path pathLength="1" d="M97 142 C97 88 139 52 194 52 C246 52 283 83 283 130 C283 174 251 207 199 207 L146 207 C116 207 94 226 94 255 C94 299 133 328 195 328 C243 328 282 311 305 279"/>
+    <path pathLength="1" d="M372 64 L372 320 M372 197 C397 158 428 139 466 139 C518 139 548 174 548 231 L548 320"/>
+    <path pathLength="1" d="M622 145 L622 320 M622 78 L622 79"/>
+    <path pathLength="1" d="M693 64 L693 320 M693 221 L807 145 M735 193 L822 320"/>
+    <path pathLength="1" d="M882 320 L882 145 M882 184 C904 155 930 140 960 140 C997 140 1021 158 1032 193 C1055 157 1084 140 1119 140 C1167 140 1192 174 1192 235 L1192 320"/>
+    <path class="accent" pathLength="1" d="M353 371 C481 394 625 398 785 383 C897 372 1002 351 1101 320"/>
+  </g>
+</svg>

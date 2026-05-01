@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 
-const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore'];
+const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg'];
 const requiredInHtml = [
   'GyuHo Kim',
   'ghkim.dev',
@@ -23,6 +23,8 @@ const requiredInHtml = [
   'class="sidebar socials"',
   'id="cursor"',
   'main-cover',
+  'files/ghkim-anim.svg',
+  'signature-animation',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
   'https://github.com/GyuHo123'
 ];
@@ -96,6 +98,24 @@ if (existsSync('styles.css')) {
     if (css.includes(text)) {
       failures.push(`styles.css must not use non-Pretendard font: ${text}`);
     }
+  }
+}
+
+
+
+if (existsSync('files/ghkim-anim.svg')) {
+  const svg = readFileSync('files/ghkim-anim.svg', 'utf8');
+  for (const text of ['<svg', '<title>Animated ghkim.dev line signature</title>', '@keyframes draw-signature', 'stroke-dasharray', 'stroke-dashoffset', 'prefers-reduced-motion', 'pathLength="1"']) {
+    if (!svg.includes(text)) {
+      failures.push(`files/ghkim-anim.svg is missing animation/accessibility marker: ${text}`);
+    }
+  }
+  const pathCount = (svg.match(/<path\b/g) || []).length;
+  if (pathCount < 5) {
+    failures.push('files/ghkim-anim.svg should contain at least five original line paths.');
+  }
+  if (svg.includes('1127 327') || svg.includes('23.977 211.972') || svg.includes('331.92 35.25')) {
+    failures.push('files/ghkim-anim.svg must not copy the joonas.io path data.');
   }
 }
 

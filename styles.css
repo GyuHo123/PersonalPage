@@ -463,3 +463,15 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+.signature-animation {
+  width: min(720px, 100%);
+  margin: 34px auto 0;
+  opacity: 0.82;
+}
+
+.signature-animation img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

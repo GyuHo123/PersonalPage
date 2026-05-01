@@ -1,0 +1,11 @@
+# Local OMX runtime state and logs
+.omx/
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Node artifacts if dependencies are added later
+node_modules/
+npm-debug.log*

@@ -87,6 +87,9 @@ if (existsSync('.github/workflows/deploy.yml')) {
       failures.push(`GitHub Pages workflow is missing: ${text}`);
     }
   }
+  if (workflow.includes('cache: npm') && !existsSync('package-lock.json')) {
+    failures.push('GitHub Actions workflow must not enable npm cache without package-lock.json.');
+  }
 }
 
 if (existsSync('.gitignore')) {

@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 
-const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg'];
+const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jdevops.png', 'files/logos/jcode.png', 'files/logos/jbnu-private-llm.png', 'files/logos/regsafe.svg', 'files/logos/lsa.svg'];
 const requiredInHtml = [
   'GyuHo Kim',
   'ghkim.dev',
@@ -11,10 +11,9 @@ const requiredInHtml = [
   'private LLM',
   'Keycloak',
   'Squid',
-  'Crenu',
   'Career & Education',
   'Awards & Honors',
-  'Skills',
+  'Capabilities',
   'Apps & Projects',
   'Teams',
   'Contacts',
@@ -22,6 +21,9 @@ const requiredInHtml = [
   'JCode',
   'Lab Safety Assistant',
   'RegSafe',
+  'JCloud',
+  'JBNU AM:PM',
+  'J-Devops',
   'Jeonbuk National University',
   'Pretendard Variable',
   'https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css',
@@ -31,7 +33,14 @@ const requiredInHtml = [
   'id="cursor"',
   'main-cover',
   'files/ghkim-anim.svg',
-  'ai-orbit-animation',
+  'ai-mark-animation',
+  'files/logos/regsafe.svg',
+  'files/logos/jcode.png',
+  'files/logos/jbnu-private-llm.png',
+  'files/logos/jcloud.png',
+  'files/logos/lsa.svg',
+  'files/logos/ampm.png',
+  'files/logos/jdevops.png',
   'AI systems that leave an audit trail',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
   'https://github.com/GyuHo123'
@@ -84,11 +93,16 @@ if (existsSync('index.html')) {
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
+  for (const text of ['Code Club', 'Crenu']) {
+    if (html.includes(text)) {
+      failures.push(`index.html should omit lower-priority or removed item: ${text}`);
+    }
+  }
 }
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.logo-cloud', '.ai-mark-animation']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }
@@ -113,7 +127,7 @@ if (existsSync('styles.css')) {
 
 if (existsSync('files/ghkim-anim.svg')) {
   const svg = readFileSync('files/ghkim-anim.svg', 'utf8');
-  for (const text of ['<svg', '<title>AI Innovator orbital systems mark</title>', '@keyframes orbit-pulse', '@keyframes draw-circuit', 'stroke-dasharray', 'stroke-dashoffset', 'prefers-reduced-motion', 'pathLength="1"']) {
+  for (const text of ['<svg', '<title>AI infrastructure lattice mark</title>', '@keyframes lattice-draw', '@keyframes node-scan', 'stroke-dasharray', 'stroke-dashoffset', 'prefers-reduced-motion', 'pathLength="1"']) {
     if (!svg.includes(text)) {
       failures.push(`files/ghkim-anim.svg is missing animation/accessibility marker: ${text}`);
     }
@@ -121,17 +135,20 @@ if (existsSync('files/ghkim-anim.svg')) {
   const pathCount = (svg.match(/<path\b/g) || []).length;
   const circleCount = (svg.match(/<circle\b/g) || []).length;
   if (pathCount < 6 || circleCount < 4) {
-    failures.push('files/ghkim-anim.svg should contain an original AI-orbit motif with multiple paths and nodes.');
+    failures.push('files/ghkim-anim.svg should contain an original AI lattice motif with multiple paths and nodes.');
   }
-  for (const text of ['orbit-ring', 'neural-node', 'circuit-line']) {
+  for (const text of ['lattice-line', 'neural-node', 'inference-core']) {
     if (!svg.includes(text)) {
-      failures.push(`files/ghkim-anim.svg is missing AI innovator motif marker: ${text}`);
+      failures.push(`files/ghkim-anim.svg is missing AI infrastructure motif marker: ${text}`);
     }
   }
-  if (svg.includes('1127 327') || svg.includes('23.977 211.972') || svg.includes('331.92 35.25')) {
-    failures.push('files/ghkim-anim.svg must not copy the joonas.io path data.');
+  for (const text of ['1127 327', '23.977 211.972', '331.92 35.25', 'orbit-ring', 'smile', 'swoosh']) {
+    if (svg.includes(text)) {
+      failures.push(`files/ghkim-anim.svg must avoid copied or logo-like marker: ${text}`);
+    }
   }
 }
+
 
 if (existsSync('CNAME')) {
   const cname = readFileSync('CNAME', 'utf8').trim();

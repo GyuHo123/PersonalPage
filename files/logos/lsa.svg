@@ -1,0 +1,6 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lab Safety Assistant logo">
+  <rect width="160" height="160" rx="34" fill="#0f766e"/>
+  <path d="M58 34h44M74 34v34l-31 46c-7 10 .2 24 12.5 24h49c12.3 0 19.5-14 12.5-24L86 68V34" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M58 108h44" stroke="#99f6e4" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="80" cy="92" r="9" fill="#99f6e4"/>
+</svg>

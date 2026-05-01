@@ -4,7 +4,13 @@ const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots
 const requiredInHtml = [
   'GyuHo Kim',
   'ghkim.dev',
-  'Software Engineer',
+  'Software engineer building backend platforms, cloud tooling, and AI-assisted workflows.',
+  'Career & Education',
+  'Awards & Honors',
+  'Skills',
+  'Apps & Projects',
+  'Teams',
+  'Contacts',
   'SK AX',
   'JCode',
   'Lab Safety Assistant',
@@ -50,7 +56,7 @@ if (existsSync('index.html')) {
   }
 
   const sectionIds = Array.from(html.matchAll(/<section\b[^>]*id="([^"]+)"/g)).map(([, id]) => id);
-  for (const id of ['work', 'projects', 'recognition', 'contact']) {
+  for (const id of ['career', 'awards', 'skills', 'apps', 'teams', 'footer']) {
     if (!sectionIds.includes(id)) {
       failures.push(`Missing section id: ${id}`);
     }
@@ -59,9 +65,15 @@ if (existsSync('index.html')) {
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['prefers-color-scheme', '@media', ':focus-visible', '--accent']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--rule', 'max-width: 1100px']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
+    }
+  }
+  const prohibited = ['glassmorphism', 'radial-gradient', 'linear-gradient', 'backdrop-filter', 'box-shadow:', 'border-radius: 999px'];
+  for (const text of prohibited) {
+    if (css.includes(text)) {
+      failures.push(`styles.css should avoid AI-looking visual trope: ${text}`);
     }
   }
 }

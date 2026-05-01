@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 
-const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/regsafe.svg', 'files/logos/lsa.svg', 'files/logos/skax.svg', 'files/logos/jbnu.png', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/lock.svg', 'files/icons/branch.svg', 'files/icons/database.svg', 'files/icons/api.svg', 'files/logos/linkedin.svg', 'files/logos/github.svg', 'files/logos/gmail.svg'];
+const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/regsafe.svg', 'files/logos/lsa.svg', 'files/logos/skax.svg', 'files/logos/jbnu.png', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/lock.svg', 'files/icons/branch.svg', 'files/icons/database.svg', 'files/icons/api.svg', 'files/logos/linkedin.svg', 'files/logos/github.svg', 'files/logos/gmail.svg', 'files/skills/springboot.svg', 'files/skills/kotlin.svg', 'files/skills/java.svg', 'files/skills/nodejs.svg', 'files/skills/python.svg', 'files/skills/docker.svg', 'files/skills/nginx.svg', 'files/skills/openstack.svg', 'files/skills/redis.svg', 'files/skills/mariadb.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/vllm.svg', 'files/skills/rag.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg'];
 const requiredInHtml = [
   'GyuHo Kim',
   'ghkim.dev',
@@ -13,7 +13,7 @@ const requiredInHtml = [
   'Squid',
   'Career & Education',
   'Awards & Honors',
-  'Capabilities',
+  'Skills',
   'Apps & Projects',
   'Teams',
   'Contacts',
@@ -47,6 +47,13 @@ const requiredInHtml = [
   'files/logos/linkedin.svg',
   'files/logos/github.svg',
   'files/logos/gmail.svg',
+  'Spring Boot',
+  'Kotlin',
+  'Docker',
+  'OpenStack',
+  'vLLM',
+  'GitHub Actions',
+  'REST APIs',
   'mailto:kimghdev@gmail.com',
   'AI systems that leave an audit trail',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
@@ -101,12 +108,12 @@ if (existsSync('index.html')) {
     }
   }
   if (!html.includes('id="home"')) {
-    failures.push('Missing joonas-style home cover id: home');
+    failures.push('Missing home cover id: home');
   }
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
-  for (const text of ['Code Club', 'Crenu', 'J-Devops', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg']) {
+  for (const text of ['Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg']) {
     if (html.includes(text)) {
       failures.push(`index.html should omit lower-priority or removed item: ${text}`);
     }
@@ -120,7 +127,7 @@ if (existsSync('index.html')) {
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.logo-cloud', '.ai-mark-animation', '.entry-logo', '.icon-cards', '.icon-columns', '.section-title-icon', '.logo-contacts']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.logo-cloud', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.logo-contacts', '@keyframes skill-float', '@keyframes skill-reveal']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }

@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 
-const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jdevops.png', 'files/logos/jcode.png', 'files/logos/jbnu-private-llm.png', 'files/logos/regsafe.svg', 'files/logos/lsa.svg'];
+const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/regsafe.svg', 'files/logos/lsa.svg', 'files/logos/skax.svg', 'files/logos/jbnu.svg', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/lock.svg', 'files/icons/branch.svg', 'files/icons/database.svg', 'files/icons/api.svg'];
 const requiredInHtml = [
   'GyuHo Kim',
   'ghkim.dev',
@@ -23,7 +23,6 @@ const requiredInHtml = [
   'RegSafe',
   'JCloud',
   'JBNU AM:PM',
-  'J-Devops',
   'Jeonbuk National University',
   'Pretendard Variable',
   'https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css',
@@ -36,11 +35,15 @@ const requiredInHtml = [
   'ai-mark-animation',
   'files/logos/regsafe.svg',
   'files/logos/jcode.png',
-  'files/logos/jbnu-private-llm.png',
+  'files/logos/jllm.png',
   'files/logos/jcloud.png',
   'files/logos/lsa.svg',
   'files/logos/ampm.png',
-  'files/logos/jdevops.png',
+  'files/logos/skax.svg',
+  'files/logos/jbnu.svg',
+  'files/icons/briefcase.svg',
+  'files/icons/trophy.svg',
+  'files/icons/chip.svg',
   'AI systems that leave an audit trail',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
   'https://github.com/GyuHo123'
@@ -51,6 +54,12 @@ const failures = [];
 for (const file of requiredFiles) {
   if (!existsSync(file)) {
     failures.push(`Missing required file: ${file}`);
+  }
+}
+
+for (const file of ['files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png']) {
+  if (existsSync(file)) {
+    failures.push(`Removed logo file should not remain: ${file}`);
   }
 }
 
@@ -93,7 +102,7 @@ if (existsSync('index.html')) {
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
-  for (const text of ['Code Club', 'Crenu']) {
+  for (const text of ['Code Club', 'Crenu', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png']) {
     if (html.includes(text)) {
       failures.push(`index.html should omit lower-priority or removed item: ${text}`);
     }
@@ -102,7 +111,7 @@ if (existsSync('index.html')) {
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.logo-cloud', '.ai-mark-animation']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.logo-cloud', '.ai-mark-animation', '.entry-logo', '.icon-cards', '.icon-columns', '.section-title-icon']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }

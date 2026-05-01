@@ -451,3 +451,93 @@ p { margin: 0; }
     grid-template-columns: 1fr;
   }
 }
+
+/* Screenshot pass: keep logo/icon sections from colliding or clipping on wide layouts. */
+.section {
+  grid-template-columns: minmax(190px, 0.28fr) minmax(0, 1fr);
+  gap: clamp(42px, 6vw, 96px);
+}
+
+.section-title h2 {
+  max-width: 360px;
+  font-size: clamp(30px, 3.4vw, 58px);
+  letter-spacing: -0.07em;
+  overflow-wrap: break-word;
+  z-index: 0;
+}
+
+.section-body {
+  position: relative;
+  z-index: 1;
+}
+
+.entry-logo,
+.team-grid article,
+.logo-cloud img,
+.project-stack article > span {
+  overflow: hidden;
+}
+
+.entry-logo img,
+.team-grid img,
+.logo-cloud img,
+.project-stack article > span img {
+  display: block;
+  object-fit: contain;
+}
+
+.entry-logo img[src$="jcloud.png"],
+.team-grid img[src$="jcloud.png"] {
+  max-width: 180px;
+  max-height: 58px;
+}
+
+.entry-logo img[src$="skax.svg"] {
+  max-width: 92px;
+  max-height: 76px;
+}
+
+.entry-logo img[src$="jbnu.png"] {
+  max-width: 74px;
+  max-height: 74px;
+}
+
+.logo-contacts {
+  align-items: center;
+  gap: 18px;
+}
+
+.logo-contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+  font-size: clamp(18px, 2vw, 28px);
+}
+
+.logo-contacts a img {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+}
+
+.logo-contacts a:hover {
+  color: var(--accent);
+  border-color: rgba(125, 249, 255, 0.34);
+}
+
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .section-title h2 {
+    max-width: none;
+  }
+  .logo-contacts a {
+    width: 100%;
+  }
+}

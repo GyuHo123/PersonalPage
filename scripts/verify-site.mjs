@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 
-const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/regsafe.svg', 'files/logos/lsa.svg', 'files/logos/skax.svg', 'files/logos/jbnu.svg', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/lock.svg', 'files/icons/branch.svg', 'files/icons/database.svg', 'files/icons/api.svg'];
+const requiredFiles = ['index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/regsafe.svg', 'files/logos/lsa.svg', 'files/logos/skax.svg', 'files/logos/jbnu.png', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/lock.svg', 'files/icons/branch.svg', 'files/icons/database.svg', 'files/icons/api.svg', 'files/logos/linkedin.svg', 'files/logos/github.svg', 'files/logos/gmail.svg'];
 const requiredInHtml = [
   'GyuHo Kim',
   'ghkim.dev',
@@ -40,10 +40,14 @@ const requiredInHtml = [
   'files/logos/lsa.svg',
   'files/logos/ampm.png',
   'files/logos/skax.svg',
-  'files/logos/jbnu.svg',
+  'files/logos/jbnu.png',
   'files/icons/briefcase.svg',
   'files/icons/trophy.svg',
   'files/icons/chip.svg',
+  'files/logos/linkedin.svg',
+  'files/logos/github.svg',
+  'files/logos/gmail.svg',
+  'mailto:kimghdev@gmail.com',
   'AI systems that leave an audit trail',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
   'https://github.com/GyuHo123'
@@ -57,7 +61,7 @@ for (const file of requiredFiles) {
   }
 }
 
-for (const file of ['files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png']) {
+for (const file of ['files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg']) {
   if (existsSync(file)) {
     failures.push(`Removed logo file should not remain: ${file}`);
   }
@@ -102,16 +106,21 @@ if (existsSync('index.html')) {
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
-  for (const text of ['Code Club', 'Crenu', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png']) {
+  for (const text of ['Code Club', 'Crenu', 'J-Devops', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg']) {
     if (html.includes(text)) {
       failures.push(`index.html should omit lower-priority or removed item: ${text}`);
     }
+  }
+
+  const logoCloud = html.match(/<div class="logo-cloud"[\s\S]*?<\/div>/)?.[0] || '';
+  if (logoCloud.includes('files/logos/jcode.png')) {
+    failures.push('Hero logo cloud should omit the removed JCode/GitHub-cat style icon.');
   }
 }
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.logo-cloud', '.ai-mark-animation', '.entry-logo', '.icon-cards', '.icon-columns', '.section-title-icon']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.logo-cloud', '.ai-mark-animation', '.entry-logo', '.icon-cards', '.icon-columns', '.section-title-icon', '.logo-contacts']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }

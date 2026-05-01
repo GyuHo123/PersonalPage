@@ -16,6 +16,13 @@ const requiredInHtml = [
   'Lab Safety Assistant',
   'RegSafe',
   'Jeonbuk National University',
+  'Pretendard Variable',
+  'https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css',
+  'class="subjects"',
+  'class="sidebar navigator"',
+  'class="sidebar socials"',
+  'id="cursor"',
+  'main-cover',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
   'https://github.com/GyuHo123'
 ];
@@ -61,19 +68,33 @@ if (existsSync('index.html')) {
       failures.push(`Missing section id: ${id}`);
     }
   }
+  if (!html.includes('id="home"')) {
+    failures.push('Missing joonas-style home cover id: home');
+  }
+  if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter')) {
+    failures.push('HTML must not introduce non-Pretendard display/body fonts.');
+  }
 }
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--rule', 'max-width: 1100px']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--section-bg', 'cursor: none', '100vh']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }
   }
-  const prohibited = ['glassmorphism', 'radial-gradient', 'linear-gradient', 'backdrop-filter', 'box-shadow:', 'border-radius: 999px'];
+  const prohibited = ['glassmorphism', 'backdrop-filter', 'border-radius: 999px'];
   for (const text of prohibited) {
     if (css.includes(text)) {
       failures.push(`styles.css should avoid AI-looking visual trope: ${text}`);
+    }
+  }
+  if (!css.includes('font-family: "Pretendard Variable"') && !css.includes("font-family: 'Pretendard Variable'")) {
+    failures.push('styles.css must use Pretendard Variable as the fixed font family.');
+  }
+  for (const text of ['Georgia', 'Times New Roman', 'Inter,']) {
+    if (css.includes(text)) {
+      failures.push(`styles.css must not use non-Pretendard font: ${text}`);
     }
   }
 }

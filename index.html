@@ -9,15 +9,16 @@
       content="GyuHo Kim is a software engineer building backend platforms, cloud tooling, and AI-assisted workflows."
     />
     <link rel="canonical" href="https://ghkim.dev/" />
-    <meta name="theme-color" content="#f9f9f4" />
+    <meta name="theme-color" content="#050505" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="GyuHo Kim — Software Engineer" />
-    <meta
-      property="og:description"
-      content="Backend platforms, cloud tooling, and AI-assisted workflows."
-    />
+    <meta property="og:description" content="Backend platforms, cloud tooling, and AI-assisted workflows." />
     <meta property="og:url" content="https://ghkim.dev/" />
     <meta name="twitter:card" content="summary" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css"
+    />
     <link rel="stylesheet" href="styles.css" />
     <script type="application/ld+json">
       {
@@ -32,124 +33,138 @@
           "https://www.linkedin.com/in/gyuho-kim-696568268/",
           "https://github.com/GyuHo123"
         ],
-        "knowsAbout": ["Backend Engineering", "Cloud Infrastructure", "AI Workflows", "Developer Tools"]
+        "knowsAbout": ["Backend Engineering", "Cloud Infrastructure", "Developer Tools", "AI Workflows"]
       }
     </script>
   </head>
-  <body>
+  <body data-font="Pretendard Variable">
+    <div id="cursor" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <aside class="rail rail-nav" aria-label="Page sections">
-      <a href="#top" aria-label="Intro"><span>Intro</span></a>
-      <a href="#career" aria-label="Career and education"><span>Career</span></a>
-      <a href="#awards" aria-label="Awards and honors"><span>Awards</span></a>
-      <a href="#skills" aria-label="Skills"><span>Skills</span></a>
-      <a href="#apps" aria-label="Apps and projects"><span>Projects</span></a>
-      <a href="#teams" aria-label="Teams"><span>Teams</span></a>
-      <a href="#footer" aria-label="Contacts"><span>Contacts</span></a>
-    </aside>
+    <div class="sidebar navigator" aria-label="Section navigation">
+      <ul>
+        <li><a href="#home"><span class="circle"></span><span class="label">Home</span></a></li>
+        <li><a href="#career"><span class="circle"></span><span class="label">Career</span></a></li>
+        <li><a href="#awards"><span class="circle"></span><span class="label">Awards</span></a></li>
+        <li><a href="#skills"><span class="circle"></span><span class="label">Skills</span></a></li>
+        <li><a href="#apps"><span class="circle"></span><span class="label">Projects</span></a></li>
+        <li><a href="#teams"><span class="circle"></span><span class="label">Teams</span></a></li>
+        <li><a href="#footer"><span class="circle"></span><span class="label">Contacts</span></a></li>
+      </ul>
+    </div>
 
-    <aside class="rail rail-links" aria-label="Profile links">
-      <a href="https://www.linkedin.com/in/gyuho-kim-696568268/" target="_blank" rel="me noopener">LinkedIn</a>
-      <a href="https://github.com/GyuHo123" target="_blank" rel="me noopener">GitHub</a>
-    </aside>
+    <div class="sidebar socials" aria-label="Social links">
+      <ul>
+        <li><a href="https://www.linkedin.com/in/gyuho-kim-696568268/" target="_blank" rel="me noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/GyuHo123" target="_blank" rel="me noopener">GitHub</a></li>
+      </ul>
+    </div>
 
-    <main id="main" class="page">
-      <header id="top" class="intro">
-        <nav class="topline" aria-label="Primary">
-          <a href="#career">Career</a>
-          <a href="#awards">Awards</a>
-          <a href="#skills">Skills</a>
-          <a href="#apps">Projects</a>
-          <a href="#footer">Contacts</a>
-        </nav>
-        <p class="kicker">ghkim.dev</p>
-        <h1>GyuHo Kim</h1>
-        <p class="lead">Software engineer building backend platforms, cloud tooling, and AI-assisted workflows.</p>
-        <p class="note">
-          I work at the boundary between infrastructure and product: APIs, deployment paths,
-          secure developer environments, and systems that make engineering work more reliable.
-        </p>
+    <nav id="top" class="top-menu" aria-label="Primary navigation">
+      <p class="subjects">
+        <a href="#home" class="title">About</a>
+        <a href="#career" class="title">Career</a>
+        <a href="#awards" class="title">Award</a>
+        <a href="#skills" class="title">Skill</a>
+        <a href="#apps" class="title">Toys</a>
+        <a href="#teams" class="title">Team</a>
+        <a href="#footer" class="title">Contact</a>
+        <a href="#home" class="title">About</a><a href="#career" class="title">Career</a><a href="#awards" class="title">Award</a><a href="#skills" class="title">Skill</a><a href="#apps" class="title">Toys</a><a href="#teams" class="title">Team</a><a href="#footer" class="title">Contact</a>
+        <a href="#home" class="title">About</a><a href="#career" class="title">Career</a><a href="#awards" class="title">Award</a><a href="#skills" class="title">Skill</a><a href="#apps" class="title">Toys</a><a href="#teams" class="title">Team</a><a href="#footer" class="title">Contact</a>
+      </p>
+    </nav>
+
+    <main id="main">
+      <header role="cover" id="home" class="main-cover">
+        <div class="cover-inner">
+          <p class="overline">ghkim.dev</p>
+          <h1>GyuHo Kim</h1>
+          <p class="lead">Software engineer building backend platforms, cloud tooling, and AI-assisted workflows.</p>
+          <p class="summary">
+            SK AX software engineer. Previously worked with J-Devops and JBNU OSLAB on JCloud operations,
+            education tooling, secure cloud IDEs, and private LLM infrastructure.
+          </p>
+        </div>
       </header>
 
-      <section id="career" class="section" aria-labelledby="career-title">
-        <h2 id="career-title">Career & Education</h2>
-        <ol class="timeline">
-          <li>
+      <section id="career" class="section block-grid" aria-labelledby="career-title">
+        <div class="section-title"><h2 id="career-title" aria-label="Career & Education">Career &amp; Education</h2></div>
+        <div class="section-body">
+          <article class="entry">
             <time>Current</time>
             <div>
               <h3>SK AX</h3>
-              <p>Software Engineer. Backend and platform engineering work for production software systems.</p>
+              <p>Software Engineer. Backend and platform engineering for production software systems.</p>
             </div>
-          </li>
-          <li>
+          </article>
+          <article class="entry">
             <time>2023 — 2025</time>
             <div>
               <h3>J-Devops, JBNU OSLAB Developer Team</h3>
               <p>Software Engineer / DevOps. JCloud operations, education tooling, cloud IDE systems, and private LLM infrastructure.</p>
             </div>
-          </li>
-          <li>
+          </article>
+          <article class="entry">
             <time>2019 — 2025</time>
             <div>
               <h3>Jeonbuk National University</h3>
               <p>Software engineering background. GPA 4.29 / 4.5. Graduated with second-class honor.</p>
             </div>
-          </li>
-        </ol>
+          </article>
+        </div>
       </section>
 
-      <section id="awards" class="section" aria-labelledby="awards-title">
-        <h2 id="awards-title">Awards & Honors</h2>
-        <ul class="plain-list split-list">
-          <li><span>Grand Prize</span> JBNU Software Engineering Department Work Competition</li>
-          <li><span>Gold Award</span> KIIT undergraduate paper competition</li>
-          <li><span>Silver Award</span> JBNU LINC 3.0 Capstone Design Competition</li>
-          <li><span>Grand Prize</span> 2024 Self-Driving SW Training and Competition</li>
-          <li><span>Publication</span> AR safety training system using Aruco markers, gyrosensor data, and image data</li>
-          <li><span>Certification</span> OPIc IH, ACTFL</li>
-        </ul>
+      <section id="awards" class="section dark-block" aria-labelledby="awards-title">
+        <div class="section-title"><h2 id="awards-title" aria-label="Awards & Honors">Awards &amp; Honors</h2></div>
+        <div class="section-body columns">
+          <p><b>Grand Prize</b><span>JBNU Software Engineering Department Work Competition</span></p>
+          <p><b>Gold Award</b><span>KIIT undergraduate paper competition</span></p>
+          <p><b>Silver Award</b><span>JBNU LINC 3.0 Capstone Design Competition</span></p>
+          <p><b>Grand Prize</b><span>2024 Self-Driving SW Training and Competition</span></p>
+          <p><b>Publication</b><span>AR safety training system using Aruco markers, gyrosensor data, and image data</span></p>
+          <p><b>Certification</b><span>OPIc IH, ACTFL</span></p>
+        </div>
       </section>
 
       <section id="skills" class="section" aria-labelledby="skills-title">
-        <h2 id="skills-title">Skills</h2>
-        <ul class="skill-list" aria-label="Technology stack">
-          <li>Spring Boot</li>
-          <li>Kotlin</li>
-          <li>Node.js</li>
-          <li>Docker</li>
-          <li>NginX</li>
-          <li>Redis</li>
-          <li>MariaDB</li>
-          <li>OAuth2</li>
-          <li>OpenStack</li>
-          <li>vLLM</li>
-          <li>GitHub Actions</li>
-          <li>REST APIs</li>
+        <div class="section-title"><h2 id="skills-title">Skills</h2></div>
+        <ul class="cards section-body" aria-label="Technology stack">
+          <li class="item"><span>Spring Boot</span></li>
+          <li class="item"><span>Kotlin</span></li>
+          <li class="item"><span>Node.js</span></li>
+          <li class="item"><span>Docker</span></li>
+          <li class="item"><span>NginX</span></li>
+          <li class="item"><span>Redis</span></li>
+          <li class="item"><span>MariaDB</span></li>
+          <li class="item"><span>OAuth2</span></li>
+          <li class="item"><span>OpenStack</span></li>
+          <li class="item"><span>vLLM</span></li>
+          <li class="item"><span>GitHub Actions</span></li>
+          <li class="item"><span>REST APIs</span></li>
         </ul>
       </section>
 
-      <section id="apps" class="section" aria-labelledby="apps-title">
-        <h2 id="apps-title">Apps & Projects</h2>
-        <div class="project-list">
+      <section id="apps" class="section dark-block" aria-labelledby="apps-title">
+        <div class="section-title"><h2 id="apps-title" aria-label="Apps & Projects">Apps &amp; Projects</h2></div>
+        <div class="section-body project-stack">
           <article>
-            <p class="meta">AI workflow</p>
+            <span>AI workflow</span>
             <h3>RegSafe</h3>
             <p>Change impact analysis and compliance support workflow for regulated documents, with retrieval and review evidence paths.</p>
           </article>
           <article>
-            <p class="meta">Secure WebIDE</p>
+            <span>Secure WebIDE</span>
             <h3>JCode</h3>
-            <p>Backend and architecture work for a coursework WebIDE using OAuth2, reverse proxying, and isolated Docker workspaces.</p>
+            <p>Coursework WebIDE using OAuth2, reverse proxying, and isolated Docker workspaces.</p>
           </article>
           <article>
-            <p class="meta">Safety education</p>
+            <span>Safety education</span>
             <h3>Lab Safety Assistant</h3>
-            <p>Backend systems for an AR laboratory safety education platform: REST APIs, Redis, MariaDB, deployment automation, and NginX.</p>
+            <p>AR laboratory safety education backend: REST APIs, Redis, MariaDB, deployment automation, and NginX.</p>
             <a href="https://github.com/GyuHo123/LSA_Server_SpringBoot" target="_blank" rel="noopener">Repository</a>
           </article>
           <article>
-            <p class="meta">AI infrastructure</p>
+            <span>AI infrastructure</span>
             <h3>Private LLM serving on JCloud</h3>
             <p>Local inference and internal serving infrastructure using vLLM and OpenWebUI under practical GPU and access constraints.</p>
           </article>
@@ -157,22 +172,31 @@
       </section>
 
       <section id="teams" class="section" aria-labelledby="teams-title">
-        <h2 id="teams-title">Teams</h2>
-        <ul class="plain-list split-list">
-          <li><span>JBNU AM:PM</span> Core member / lead for algorithm study, hackathons, mentoring, and department community work.</li>
-          <li><span>J-Devops</span> Developer team member for campus cloud, education tools, and AI infrastructure.</li>
-          <li><span>Code Club</span> Software education donation volunteer and AM:PM education donation team lead.</li>
-        </ul>
+        <div class="section-title"><h2 id="teams-title">Teams</h2></div>
+        <div class="section-body columns">
+          <p><b>JBNU AM:PM</b><span>Core member / lead for algorithm study, hackathons, mentoring, and department community work.</span></p>
+          <p><b>J-Devops</b><span>Developer team member for campus cloud, education tools, and AI infrastructure.</span></p>
+          <p><b>Code Club</b><span>Software education donation volunteer and AM:PM education donation team lead.</span></p>
+        </div>
       </section>
 
       <section id="footer" class="section footer" aria-labelledby="contacts-title">
-        <h2 id="contacts-title">Contacts</h2>
-        <address>
+        <div class="section-title"><h2 id="contacts-title">Contacts</h2></div>
+        <div class="section-body contact-list">
           <a href="https://www.linkedin.com/in/gyuho-kim-696568268/" target="_blank" rel="me noopener">LinkedIn</a>
           <a href="https://github.com/GyuHo123" target="_blank" rel="me noopener">GitHub</a>
-        </address>
-        <p class="fineprint">© 2026 GyuHo Kim. Built for GitHub Pages at ghkim.dev.</p>
+          <p>© 2026 GyuHo Kim. Built for GitHub Pages at ghkim.dev.</p>
+        </div>
       </section>
     </main>
+
+    <script>
+      const cursor = document.getElementById('cursor');
+      if (cursor && matchMedia('(pointer: fine)').matches) {
+        addEventListener('pointermove', (event) => {
+          cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+        });
+      }
+    </script>
   </body>
 </html>

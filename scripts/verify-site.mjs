@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 
-const requiredFiles = ['index.html', 'en/index.html', 'ko/index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/lsa.svg', 'files/logos/skax.svg', 'files/logos/jbnu.png', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/database.svg', 'files/icons/api.svg', 'files/logos/linkedin.svg', 'files/logos/github.svg', 'files/logos/gmail.svg', 'files/skills/kotlin.svg', 'files/skills/java.svg', 'files/skills/python.svg', 'files/skills/springboot.svg', 'files/skills/spring-ai.svg', 'files/skills/fastapi.svg', 'files/skills/langchain4j.svg', 'files/skills/vllm.svg', 'files/skills/redis.svg', 'files/skills/caffeine.svg', 'files/skills/mysql.svg', 'files/skills/docker.svg', 'files/skills/kubernetes.svg', 'files/skills/openstack.svg', 'files/skills/aws.svg', 'files/skills/prometheus.svg'];
+const requiredFiles = ['index.html', 'en/index.html', 'ko/index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/lsa.png', 'files/logos/skax.svg', 'files/logos/rooty.svg', 'files/logos/jbnu.png', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/database.svg', 'files/icons/api.svg', 'files/logos/linkedin.svg', 'files/logos/github.svg', 'files/logos/gmail.svg', 'files/skills/kotlin.svg', 'files/skills/java.svg', 'files/skills/python.svg', 'files/skills/springboot.svg', 'files/skills/spring-ai.svg', 'files/skills/fastapi.svg', 'files/skills/langchain4j.svg', 'files/skills/vllm.svg', 'files/skills/redis.svg', 'files/skills/caffeine.svg', 'files/skills/mysql.svg', 'files/skills/docker.svg', 'files/skills/kubernetes.svg', 'files/skills/openstack.svg', 'files/skills/aws.svg', 'files/skills/prometheus.svg'];
 const requiredInHtml = [
   '김규호',
   'ghkim.dev',
@@ -20,7 +20,7 @@ const requiredInHtml = [
   '© 2026 GyuHo Kim. All rights reserved.',
   'SK AX',
   'Software Engineer · 2025.09',
-  'Work Style Innovation Squad',
+  'Work Style Innovation Squad(2026.05—)',
   'AX Service 2',
   'AI-driven automated software delivery pipeline',
   'human-in-the-loop validation',
@@ -28,7 +28,7 @@ const requiredInHtml = [
   'JCode',
   'JLLM',
   'JCloud',
-  'Lab Safety Assistant',
+  'LSA',
   'Kotlin',
   'Java',
   'Python',
@@ -54,6 +54,7 @@ const requiredInHtml = [
   'files/skills/aws.svg',
   'files/skills/prometheus.svg',
   'files/logos/skax.svg',
+  'files/logos/rooty.svg',
   'files/logos/jbnu.png',
   'files/logos/linkedin.svg',
   'files/logos/github.svg',
@@ -61,6 +62,8 @@ const requiredInHtml = [
   'mailto:kyuhokim12@gmail.com',
   'https://docs.google.com/document/d/1Bl0EXp0AWEOf-ieHaHV6RfCMmEYEzWzs3qHCOrxrcIs/edit?usp=sharing',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
+  'https://github.com/GyuHo123/rooty',
+  'https://github.com/ijun17/LSA-web',
   'https://github.com/GyuHo123',
   'Pretendard Variable',
   'id="cursor"',
@@ -78,7 +81,7 @@ for (const file of requiredFiles) {
   }
 }
 
-for (const file of ['files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/logos/regsafe.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
+for (const file of ['files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/logos/regsafe.svg', 'files/logos/lsa.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
   if (existsSync(file)) {
     failures.push(`Removed logo file should not remain: ${file}`);
   }
@@ -132,7 +135,7 @@ if (existsSync('index.html')) {
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter,')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
-  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
+  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'Financial Recommendation MAS', 'DevOps RCA Agent', 'Lab Safety Assistant', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
     if (html.includes(text)) {
       failures.push(`index.html should omit lower-priority or removed item: ${text}`);
     }
@@ -149,7 +152,7 @@ for (const [file, markers] of [
     for (const marker of markers) {
       if (!html.includes(marker)) failures.push(`${file} is missing language/page marker: ${marker}`);
     }
-    if (html.includes('files/logos/regsafe.svg') || html.includes('files/skills/nodejs.svg') || html.includes('files/skills/github-actions.svg')) {
+    if (html.includes('files/logos/regsafe.svg') || html.includes('files/logos/lsa.svg') || html.includes('Financial Recommendation MAS') || html.includes('DevOps RCA Agent') || html.includes('Lab Safety Assistant') || html.includes('files/skills/nodejs.svg') || html.includes('files/skills/github-actions.svg')) {
       failures.push(`${file} includes removed project/skill assets.`);
     }
     if (!html.includes('<footer id="footer" class="site-footer"') || !html.includes('class="footer-links"')) {
@@ -163,7 +166,7 @@ for (const [file, markers] of [
     }
     const apps = html.match(/<section id="apps"[\s\S]*?<section id="teams"/)?.[0] || '';
     const projectLinks = (apps.match(/class="project-link"/g) || []).length;
-    if (projectLinks < 6) failures.push(`${file} should render Apps & Projects as icon project links.`);
+    if (projectLinks < 5) failures.push(`${file} should render Apps & Projects as icon project links.`);
     if (apps.includes('<p>') || apps.includes('<article')) failures.push(`${file} Apps & Projects should not use paragraph/article descriptions.`);
   }
 }

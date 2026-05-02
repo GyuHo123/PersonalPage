@@ -1,0 +1,8 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rooty logo">
+  <rect width="160" height="160" rx="28" fill="#05080f"/>
+  <path d="M45 112V48h39c18 0 31 11 31 27 0 11-6 20-16 24l21 13H94L75 101H66v11H45Z" fill="#f4f7ff"/>
+  <path d="M66 81h17c7 0 11-3 11-8s-4-8-11-8H66v16Z" fill="#05080f"/>
+  <path d="M42 118h76" stroke="#7df9ff" stroke-width="6" stroke-linecap="round"/>
+  <path d="M55 130c12 0 12-9 24-9s12 9 24 9" stroke="#8c69ff" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="118" cy="45" r="7" fill="#7df9ff"/>
+</svg>

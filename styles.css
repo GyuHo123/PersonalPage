@@ -484,3 +484,25 @@ h3 { margin: 5px 0 10px; font-size: clamp(26px, 3vw, 44px); font-weight: 930; le
     min-height: 92px;
   }
 }
+
+/* Keep Korean typography from breaking inside words while preserving the sparse layout. */
+.lead,
+.summary,
+.section-title h2,
+h3,
+.entry p,
+.columns span,
+.team-grid span,
+.project-link span,
+.logo-contacts span {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.lead {
+  max-width: 1180px;
+}
+
+.summary {
+  max-width: 900px;
+}

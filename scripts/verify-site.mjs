@@ -9,13 +9,17 @@ const requiredInHtml = [
   'Multi-Agent 오케스트레이션',
   '저지연 백엔드 아키텍처',
   'Private LLM 서빙',
-  '경력 &amp; 학력',
-  '수상 &amp; 활동',
+  'Career &amp; Education',
+  'Awards &amp; Honors',
   'Skills',
   'Apps &amp; Projects',
   'Teams',
-  '연락처',
+  'Contacts',
   'SK AX',
+  'Software Engineer | 2025.09',
+  'Work Style Innovation Squad',
+  'AX Service Team 2',
+  'Enterprise X',
   'JCode',
   'JLLM',
   'JCloud',
@@ -50,6 +54,7 @@ const requiredInHtml = [
   'files/logos/github.svg',
   'files/logos/gmail.svg',
   'mailto:kyuhokim12@gmail.com',
+  'https://docs.google.com/document/d/1Bl0EXp0AWEOf-ieHaHV6RfCMmEYEzWzs3qHCOrxrcIs/edit?usp=sharing',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
   'https://github.com/GyuHo123',
   'Pretendard Variable',
@@ -123,7 +128,7 @@ if (existsSync('index.html')) {
 
 for (const [file, markers] of [
   ['en/index.html', ['<html lang="en">', 'Career &amp; Education', 'Apps &amp; Projects', 'href="/"', '../files/skills/kotlin.svg']],
-  ['ko/index.html', ['<html lang="ko">', '경력 &amp; 학력', 'Apps &amp; Projects', 'href="/en/"', '../files/skills/kotlin.svg']]
+  ['ko/index.html', ['<html lang="ko">', 'Career &amp; Education', 'Apps &amp; Projects', 'href="/en/"', '../files/skills/kotlin.svg']]
 ]) {
   if (existsSync(file)) {
     const html = readFileSync(file, 'utf8');
@@ -142,7 +147,7 @@ for (const [file, markers] of [
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.logo-contacts', '@keyframes skill-float', '@keyframes skill-reveal']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.logo-contacts', '@keyframes skill-float', '@keyframes skill-reveal', 'word-break: keep-all', '.lead,']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }

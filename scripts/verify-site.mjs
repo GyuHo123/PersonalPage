@@ -19,6 +19,8 @@ const requiredInHtml = [
   'Software Engineer | 2025.09',
   'Work Style Innovation Squad',
   'AX Service Team 2',
+  'AI-driven automated software delivery pipeline',
+  'human-in-the-loop validation',
   'Enterprise X',
   'JCode',
   'JLLM',

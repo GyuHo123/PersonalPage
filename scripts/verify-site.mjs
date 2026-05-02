@@ -15,8 +15,11 @@ const requiredInHtml = [
   'Apps &amp; Projects',
   'Teams',
   'Contacts',
+  'class="language-switch"',
+  'class="role-list"',
+  '© 2026 GyuHo Kim. All rights reserved.',
   'SK AX',
-  'Software Engineer | 2025.09',
+  'Software Engineer · 2025.09',
   'Work Style Innovation Squad',
   'AX Service 2',
   'AI-driven automated software delivery pipeline',
@@ -138,8 +141,8 @@ if (existsSync('index.html')) {
 }
 
 for (const [file, markers] of [
-  ['en/index.html', ['<html lang="en">', 'Career &amp; Education', 'Apps &amp; Projects', 'href="/"', '../files/skills/kotlin.svg']],
-  ['ko/index.html', ['<html lang="ko">', 'Career &amp; Education', 'Apps &amp; Projects', 'href="/en/"', '../files/skills/kotlin.svg']]
+  ['en/index.html', ['<html lang="en">', 'Career &amp; Education', 'Apps &amp; Projects', 'href="/"', 'class="language-switch"', 'class="role-list"', '© 2026 GyuHo Kim. All rights reserved.', '../files/skills/kotlin.svg']],
+  ['ko/index.html', ['<html lang="ko">', 'Career &amp; Education', 'Apps &amp; Projects', 'href="/en/"', 'class="language-switch"', 'class="role-list"', '© 2026 GyuHo Kim. All rights reserved.', '../files/skills/kotlin.svg']]
 ]) {
   if (existsSync(file)) {
     const html = readFileSync(file, 'utf8');
@@ -167,7 +170,7 @@ for (const [file, markers] of [
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.site-footer', '.footer-links', '@keyframes skill-float', '@keyframes skill-reveal', 'word-break: keep-all', '.lead,']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.site-footer', '.footer-links', '.language-switch', '.role-list', '@keyframes skill-float', '@keyframes skill-reveal', 'word-break: keep-all', '.lead,']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }

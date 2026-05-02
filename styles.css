@@ -97,6 +97,31 @@ p, h1, h2, h3 { margin: 0; }
 .sidebar.socials li { margin-top: 10px; text-align: right; }
 .sidebar.socials a { color: rgba(246, 248, 255, 0.58); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 
+.language-switch {
+  position: fixed;
+  right: 28px;
+  top: 26px;
+  z-index: 40;
+  display: inline-flex;
+  border: 1px solid var(--line);
+  background: rgba(3, 5, 9, 0.82);
+}
+
+.language-switch a {
+  display: grid;
+  min-width: 44px;
+  min-height: 36px;
+  place-items: center;
+  color: rgba(246, 248, 255, 0.62);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+}
+
+.language-switch a + a { border-left: 1px solid var(--line); }
+.language-switch a:hover,
+.language-switch a.is-active { color: var(--bg); background: var(--accent); }
+
 .top-menu {
   position: absolute;
   inset: 0 auto auto 0;
@@ -214,10 +239,40 @@ time,
 .project-stack span { color: var(--muted); font-size: 14px; letter-spacing: 0.04em; }
 h3 { margin: 5px 0 10px; font-size: clamp(26px, 3vw, 44px); font-weight: 930; letter-spacing: -0.065em; line-height: 0.96; }
 .entry p,
+.role-list,
 .project-stack p,
 .columns span,
 .contact-list p { color: #dbe2f2; font-size: clamp(17px, 1.35vw, 23px); }
 .logo-entry { align-items: center; }
+
+.role-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.42;
+}
+
+.role-list li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.role-list li::before {
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  content: "";
+  background: var(--accent);
+}
+
+.role-list b,
+.role-list span { display: block; }
+.role-list b { color: var(--ink); font-weight: 850; }
+.role-list span { color: #dbe2f2; }
 .entry-logo {
   display: grid;
   place-items: center;
@@ -408,6 +463,7 @@ h3 { margin: 5px 0 10px; font-size: clamp(26px, 3vw, 44px); font-weight: 930; le
 @media (max-width: 720px) {
   body, a { cursor: auto; }
   #cursor, .sidebar, .top-menu { display: none; }
+  .language-switch { right: 16px; top: 16px; }
   .cover-inner { width: calc(100% - 32px); padding-top: 72px; text-align: left; }
   .lead, .summary { margin-left: 0; }
   .entry { grid-template-columns: 1fr; gap: 12px; }
@@ -516,6 +572,7 @@ h3 { margin: 5px 0 10px; font-size: clamp(26px, 3vw, 44px); font-weight: 930; le
 .section-title h2,
 h3,
 .entry p,
+.role-list li,
 .columns span,
 .team-grid span,
 .project-link span,

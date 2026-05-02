@@ -67,7 +67,6 @@ const requiredInHtml = [
   'files/logos/github.svg',
   'files/logos/gmail.svg',
   'mailto:kyuhokim12@gmail.com',
-  'https://docs.google.com/document/d/1Bl0EXp0AWEOf-ieHaHV6RfCMmEYEzWzs3qHCOrxrcIs/edit?usp=sharing',
   'https://www.linkedin.com/in/gyuho-kim-696568268/',
   'https://github.com/GyuHo123/rooty',
   'https://github.com/ijun17/LSA-web',
@@ -133,6 +132,10 @@ if (existsSync('index.html')) {
   if (html.includes('<section id="footer"')) {
     failures.push('Contacts should not remain as a section.');
   }
+  const footerLinks = (html.match(/class="footer-links"[\s\S]*?<\/nav>/)?.[0].match(/<a\b/g) || []).length;
+  if (footerLinks !== 3) {
+    failures.push(`Footer should contain exactly 3 contact links, got: ${footerLinks}`);
+  }
   if (html.includes('AX Service Team 2')) {
     failures.push('Career copy must use AX Service 2, not AX Service Team 2.');
   }
@@ -142,7 +145,7 @@ if (existsSync('index.html')) {
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter,')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
-  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'https://jcode.jbnu.ac.kr/"', 'Financial Recommendation MAS', 'DevOps RCA Agent', 'Lab Safety Assistant', 'Agentic AI 서비스 프로토타이핑', 'Agentic AI service prototyping', 'AI Innovator of Div. Enterprise Service', 'AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08', 'Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12', '소프트웨어공학 학사', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
+  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'CV', 'docs.google.com/document', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'https://jcode.jbnu.ac.kr/"', 'Financial Recommendation MAS', 'DevOps RCA Agent', 'Lab Safety Assistant', 'Agentic AI 서비스 프로토타이핑', 'Agentic AI service prototyping', 'AI Innovator of Div. Enterprise Service', 'AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08', 'Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12', '소프트웨어공학 학사', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
     if (html.includes(text)) {
       failures.push(`index.html should omit lower-priority or removed item: ${text}`);
     }
@@ -167,6 +170,10 @@ for (const [file, markers] of [
     }
     if (html.includes('<section id="footer"')) {
       failures.push(`${file} should not keep Contacts as a section.`);
+    }
+    const footerLinks = (html.match(/class="footer-links"[\s\S]*?<\/nav>/)?.[0].match(/<a\b/g) || []).length;
+    if (footerLinks !== 3) {
+      failures.push(`${file} footer should contain exactly 3 contact links, got: ${footerLinks}`);
     }
     if (html.includes('AX Service Team 2')) {
       failures.push(`${file} must use AX Service 2 naming.`);

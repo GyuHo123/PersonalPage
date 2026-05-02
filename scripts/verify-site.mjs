@@ -21,11 +21,17 @@ const requiredInHtml = [
   'SK AX',
   'Software Engineer · 2025.09',
   'Work Style Innovation Squad(2026.05—)',
-  'AX Service 2',
+  'AX Service 2(2026.01~)',
   'AI-driven automated software delivery pipeline',
   'human-in-the-loop validation',
-  'Enterprise X',
+  'Enterprise X(2025.11-12)',
+  'Financial AI Agent Service PoC',
+  'B.S. Software Engineering',
+  'GPA 4.29 / 4.5',
+  'Ranked 2nd in department',
+  'OSLAB undergraduate researcher',
   'JCode',
+  'https://jcode.jbnu.ac.kr/about',
   'JLLM',
   'JCloud',
   'LSA',
@@ -135,7 +141,7 @@ if (existsSync('index.html')) {
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter,')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
-  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'Financial Recommendation MAS', 'DevOps RCA Agent', 'Lab Safety Assistant', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
+  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'https://jcode.jbnu.ac.kr/"', 'Financial Recommendation MAS', 'DevOps RCA Agent', 'Lab Safety Assistant', 'Agentic AI 서비스 프로토타이핑', 'Agentic AI service prototyping', 'AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08', 'Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12', '소프트웨어공학 학사', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
     if (html.includes(text)) {
       failures.push(`index.html should omit lower-priority or removed item: ${text}`);
     }
@@ -152,7 +158,7 @@ for (const [file, markers] of [
     for (const marker of markers) {
       if (!html.includes(marker)) failures.push(`${file} is missing language/page marker: ${marker}`);
     }
-    if (html.includes('files/logos/regsafe.svg') || html.includes('files/logos/lsa.svg') || html.includes('Financial Recommendation MAS') || html.includes('DevOps RCA Agent') || html.includes('Lab Safety Assistant') || html.includes('files/skills/nodejs.svg') || html.includes('files/skills/github-actions.svg')) {
+    if (html.includes('files/logos/regsafe.svg') || html.includes('files/logos/lsa.svg') || html.includes('Financial Recommendation MAS') || html.includes('DevOps RCA Agent') || html.includes('Lab Safety Assistant') || html.includes('Agentic AI 서비스 프로토타이핑') || html.includes('Agentic AI service prototyping') || html.includes('AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08') || html.includes('Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12') || html.includes('소프트웨어공학 학사') || html.includes('files/skills/nodejs.svg') || html.includes('files/skills/github-actions.svg')) {
       failures.push(`${file} includes removed project/skill assets.`);
     }
     if (!html.includes('<footer id="footer" class="site-footer"') || !html.includes('class="footer-links"')) {
@@ -173,12 +179,12 @@ for (const [file, markers] of [
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.site-footer', '.footer-links', '.language-switch', '.role-list', '@keyframes skill-float', '@keyframes skill-reveal', 'word-break: keep-all', '.lead,']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: auto', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.site-footer', '.footer-links', '.language-switch', '.role-list', '@keyframes skill-float', '@keyframes skill-reveal', 'word-break: keep-all', '.lead,']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }
   }
-  const prohibited = ['glassmorphism', 'backdrop-filter', 'border-radius: 999px'];
+  const prohibited = ['glassmorphism', 'backdrop-filter', 'border-radius: 999px', 'cursor: none'];
   for (const text of prohibited) {
     if (css.includes(text)) {
       failures.push(`styles.css should avoid AI-looking visual trope: ${text}`);

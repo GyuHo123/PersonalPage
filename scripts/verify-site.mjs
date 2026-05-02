@@ -20,7 +20,8 @@ const requiredInHtml = [
   '© 2026 GyuHo Kim. All rights reserved.',
   'SK AX',
   'Software Engineer · 2025.09',
-  'Work Style Innovation Squad(2026.05—)',
+  'Div. Enterprise Service · Work Style Innovation Squad(2026.05—)',
+  'AI Innovator',
   'AX Service 2(2026.01~)',
   'AI-driven automated software delivery pipeline',
   'human-in-the-loop validation',
@@ -141,7 +142,7 @@ if (existsSync('index.html')) {
   if (html.includes('Georgia') || html.includes('Times New Roman') || html.includes('Inter,')) {
     failures.push('HTML must not introduce non-Pretendard display/body fonts.');
   }
-  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'https://jcode.jbnu.ac.kr/"', 'Financial Recommendation MAS', 'DevOps RCA Agent', 'Lab Safety Assistant', 'Agentic AI 서비스 프로토타이핑', 'Agentic AI service prototyping', 'AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08', 'Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12', '소프트웨어공학 학사', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
+  for (const text of ['010-3922-3897', 'kimghdev@gmail.com', 'Capabilities', 'Code Club', 'Crenu', 'J-Devops', 'RegSafe', 'https://jcode.jbnu.ac.kr/"', 'Financial Recommendation MAS', 'DevOps RCA Agent', 'Lab Safety Assistant', 'Agentic AI 서비스 프로토타이핑', 'Agentic AI service prototyping', 'AI Innovator of Div. Enterprise Service', 'AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08', 'Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12', '소프트웨어공학 학사', 'files/logos/regsafe.svg', 'files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
     if (html.includes(text)) {
       failures.push(`index.html should omit lower-priority or removed item: ${text}`);
     }
@@ -158,7 +159,7 @@ for (const [file, markers] of [
     for (const marker of markers) {
       if (!html.includes(marker)) failures.push(`${file} is missing language/page marker: ${marker}`);
     }
-    if (html.includes('files/logos/regsafe.svg') || html.includes('files/logos/lsa.svg') || html.includes('Financial Recommendation MAS') || html.includes('DevOps RCA Agent') || html.includes('Lab Safety Assistant') || html.includes('Agentic AI 서비스 프로토타이핑') || html.includes('Agentic AI service prototyping') || html.includes('AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08') || html.includes('Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12') || html.includes('소프트웨어공학 학사') || html.includes('files/skills/nodejs.svg') || html.includes('files/skills/github-actions.svg')) {
+    if (html.includes('files/logos/regsafe.svg') || html.includes('files/logos/lsa.svg') || html.includes('Financial Recommendation MAS') || html.includes('DevOps RCA Agent') || html.includes('Lab Safety Assistant') || html.includes('Agentic AI 서비스 프로토타이핑') || html.includes('Agentic AI service prototyping') || html.includes('AI Innovator of Div. Enterprise Service') || html.includes('AX Service 2</b><span>AI-driven automated software delivery pipeline · human-in-the-loop validation · 2025.12—2026.08') || html.includes('Enterprise X</b><span>Financial AI Agent Service PoC · 2025.11—2025.12') || html.includes('소프트웨어공학 학사') || html.includes('files/skills/nodejs.svg') || html.includes('files/skills/github-actions.svg')) {
       failures.push(`${file} includes removed project/skill assets.`);
     }
     if (!html.includes('<footer id="footer" class="site-footer"') || !html.includes('class="footer-links"')) {

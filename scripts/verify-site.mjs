@@ -18,7 +18,7 @@ const requiredInHtml = [
   'SK AX',
   'Software Engineer | 2025.09',
   'Work Style Innovation Squad',
-  'AX Service Team 2',
+  'AX Service 2',
   'AI-driven automated software delivery pipeline',
   'human-in-the-loop validation',
   'Enterprise X',
@@ -109,10 +109,19 @@ if (existsSync('index.html')) {
   }
 
   const sectionIds = Array.from(html.matchAll(/<section\b[^>]*id="([^"]+)"/g)).map(([, id]) => id);
-  for (const id of ['career', 'awards', 'skills', 'apps', 'teams', 'footer']) {
+  for (const id of ['career', 'awards', 'skills', 'apps', 'teams']) {
     if (!sectionIds.includes(id)) {
       failures.push(`Missing section id: ${id}`);
     }
+  }
+  if (!html.includes('<footer id="footer" class="site-footer"') || !html.includes('class="footer-links"')) {
+    failures.push('Contacts must be rendered as compact footer links, not a full section.');
+  }
+  if (html.includes('<section id="footer"')) {
+    failures.push('Contacts should not remain as a section.');
+  }
+  if (html.includes('AX Service Team 2')) {
+    failures.push('Career copy must use AX Service 2, not AX Service Team 2.');
   }
   if (!html.includes('id="home"')) {
     failures.push('Missing home cover id: home');
@@ -140,6 +149,15 @@ for (const [file, markers] of [
     if (html.includes('files/logos/regsafe.svg') || html.includes('files/skills/nodejs.svg') || html.includes('files/skills/github-actions.svg')) {
       failures.push(`${file} includes removed project/skill assets.`);
     }
+    if (!html.includes('<footer id="footer" class="site-footer"') || !html.includes('class="footer-links"')) {
+      failures.push(`${file} must render Contacts in the footer.`);
+    }
+    if (html.includes('<section id="footer"')) {
+      failures.push(`${file} should not keep Contacts as a section.`);
+    }
+    if (html.includes('AX Service Team 2')) {
+      failures.push(`${file} must use AX Service 2 naming.`);
+    }
     const apps = html.match(/<section id="apps"[\s\S]*?<section id="teams"/)?.[0] || '';
     const projectLinks = (apps.match(/class="project-link"/g) || []).length;
     if (projectLinks < 6) failures.push(`${file} should render Apps & Projects as icon project links.`);
@@ -149,7 +167,7 @@ for (const [file, markers] of [
 
 if (existsSync('styles.css')) {
   const css = readFileSync('styles.css', 'utf8');
-  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.logo-contacts', '@keyframes skill-float', '@keyframes skill-reveal', 'word-break: keep-all', '.lead,']) {
+  for (const text of ['@media', ':focus-visible', '--accent', '--aura', '--grid-line', 'cursor: none', '100vh', '.project-link', '.ai-mark-animation', '.entry-logo', '.skills-grid', '.icon-columns', '.section-title-icon', '.site-footer', '.footer-links', '@keyframes skill-float', '@keyframes skill-reveal', 'word-break: keep-all', '.lead,']) {
     if (!css.includes(text)) {
       failures.push(`styles.css is missing responsive/accessibility token: ${text}`);
     }

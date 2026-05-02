@@ -350,23 +350,46 @@ h3 { margin: 5px 0 10px; font-size: clamp(26px, 3vw, 44px); font-weight: 930; le
 .team-grid b { margin-bottom: 16px; font-size: clamp(28px, 3vw, 42px); font-weight: 930; letter-spacing: -0.07em; line-height: 0.95; }
 .team-grid span { color: #dbe2f2; font-size: clamp(18px, 1.7vw, 28px); }
 
-.contact-list,
-.logo-contacts { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-.logo-contacts a {
+.site-footer {
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+  padding: 72px max(36px, calc((100vw - 1600px) / 2)) 54px;
+  border-top: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(3, 5, 10, 0.74), rgba(3, 5, 10, 0.98)),
+    var(--bg);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.footer-links a {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  min-height: 64px;
-  padding: 14px 18px;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 14px;
   border: 1px solid var(--line);
   background: var(--panel-soft);
-  font-size: clamp(24px, 3.5vw, 54px);
+  font-size: clamp(18px, 2.1vw, 30px);
   font-weight: 930;
   letter-spacing: -0.075em;
   line-height: 1;
 }
-.logo-contacts a img { width: 32px; height: 32px; flex: 0 0 auto; }
-.logo-contacts p { flex-basis: 100%; margin-top: 70px; color: var(--dim); font-size: 16px; }
+
+.footer-links a:hover {
+  color: var(--accent);
+  border-color: rgba(125, 249, 255, 0.44);
+  background: rgba(125, 249, 255, 0.07);
+}
+
+.footer-links a img { width: 24px; height: 24px; flex: 0 0 auto; }
+.site-footer p { margin: 0; color: var(--dim); font-size: 13px; }
 
 @keyframes skill-reveal {
   from { opacity: .82; transform: translateY(16px); }
@@ -393,7 +416,9 @@ h3 { margin: 5px 0 10px; font-size: clamp(26px, 3vw, 44px); font-weight: 930; le
   .columns, .team-grid, .compact-team-grid, .icon-projects { grid-template-columns: 1fr; }
   .cards, .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .skills-grid .skill-item { min-height: 132px; }
-  .logo-contacts a { width: 100%; font-size: 26px; }
+  .site-footer { justify-items: stretch; padding: 52px 20px 38px; }
+  .footer-links { justify-content: stretch; }
+  .footer-links a { flex: 1 1 140px; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -494,7 +519,7 @@ h3,
 .columns span,
 .team-grid span,
 .project-link span,
-.logo-contacts span {
+.footer-links span {
   word-break: keep-all;
   overflow-wrap: normal;
 }

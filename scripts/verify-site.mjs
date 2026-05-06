@@ -1,6 +1,10 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 
-const requiredFiles = ['index.html', 'en/index.html', 'ko/index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/lsa.png', 'files/logos/skax.svg', 'files/logos/rooty.svg', 'files/logos/jbnu.png', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/database.svg', 'files/icons/api.svg', 'files/logos/linkedin.svg', 'files/logos/github.svg', 'files/logos/gmail.svg', 'files/skills/kotlin.svg', 'files/skills/java.svg', 'files/skills/python.svg', 'files/skills/springboot.svg', 'files/skills/spring-ai.svg', 'files/skills/fastapi.svg', 'files/skills/langchain4j.svg', 'files/skills/vllm.svg', 'files/skills/redis.svg', 'files/skills/caffeine.svg', 'files/skills/mysql.svg', 'files/skills/docker.svg', 'files/skills/kubernetes.svg', 'files/skills/openstack.svg', 'files/skills/aws.svg', 'files/skills/prometheus.svg'];
+const socialImageUrl = 'https://ghkim.dev/files/og-skax.png';
+const socialImagePath = 'files/og-skax.png';
+const socialImageAlt = 'SK Inc. AX logo';
+
+const requiredFiles = ['index.html', 'en/index.html', 'ko/index.html', 'styles.css', 'CNAME', '.nojekyll', 'robots.txt', 'sitemap.xml', '404.html', '.github/workflows/deploy.yml', '.gitignore', 'files/ghkim-anim.svg', socialImagePath, 'files/logos/jcloud.png', 'files/logos/ampm.png', 'files/logos/jcode.png', 'files/logos/jllm.png', 'files/logos/lsa.png', 'files/logos/skax.svg', 'files/logos/rooty.svg', 'files/logos/jbnu.png', 'files/icons/briefcase.svg', 'files/icons/trophy.svg', 'files/icons/chip.svg', 'files/icons/cloud.svg', 'files/icons/database.svg', 'files/icons/api.svg', 'files/logos/linkedin.svg', 'files/logos/github.svg', 'files/logos/gmail.svg', 'files/skills/kotlin.svg', 'files/skills/java.svg', 'files/skills/python.svg', 'files/skills/springboot.svg', 'files/skills/spring-ai.svg', 'files/skills/fastapi.svg', 'files/skills/langchain4j.svg', 'files/skills/vllm.svg', 'files/skills/redis.svg', 'files/skills/caffeine.svg', 'files/skills/mysql.svg', 'files/skills/docker.svg', 'files/skills/kubernetes.svg', 'files/skills/openstack.svg', 'files/skills/aws.svg', 'files/skills/prometheus.svg'];
 const requiredInHtml = [
   '김규호',
   'ghkim.dev',
@@ -80,12 +84,83 @@ const requiredInHtml = [
 ];
 
 const failures = [];
+const awardExpectations = [
+  ['Regional Finalists', '11th K-Hackathon (Honam) · 2023'],
+  ['Encouragement Award', 'XR Device Contents Ideathon · 2023'],
+  ['Grand Prize', 'Autonomous Driving SW Training and Competition · 2024'],
+  ['Gold Award', 'Korean Institute of Information Technology undergraduate paper competitions · 2024'],
+  ['Silver Award', 'JBNU Capstone Design Competition · 2024'],
+  ['Encouragement Award', 'Spatial Information AI Competition · 2024'],
+  ['Encouragement Award', 'LINC 3.0 Capstone Olympiad · 2024'],
+  ['Grand Prize', 'Software Engineering Interdisciplinary Conference and Exhibition · 2024'],
+];
+
+function assertAwards(file, html) {
+  const awards = awardExpectations;
+  const section = html.match(/<section id="awards"[\s\S]*?<section id="skills"/)?.[0] || '';
+  for (const [level, event] of awards) {
+    const entry = `<b>${level}</b><span>${event}</span>`;
+    if (!section.includes(entry)) {
+      failures.push(`${file} awards section is missing: ${entry}`);
+    }
+  }
+}
+
+
+function metaTagContent(html, attribute, name) {
+  const pattern = new RegExp(`<meta\\s+[^>]*${attribute}="${name}"[^>]*content="([^"]+)"[^>]*>`, 'i');
+  return html.match(pattern)?.[1] || '';
+}
+
+function assertSocialPreview(file, html) {
+  const expectedMeta = [
+    ['property', 'og:image', socialImageUrl],
+    ['property', 'og:image:secure_url', socialImageUrl],
+    ['property', 'og:image:type', 'image/png'],
+    ['property', 'og:image:width', '1200'],
+    ['property', 'og:image:height', '630'],
+    ['property', 'og:image:alt', socialImageAlt],
+    ['name', 'twitter:card', 'summary_large_image'],
+    ['name', 'twitter:image', socialImageUrl],
+    ['name', 'twitter:image:alt', socialImageAlt],
+  ];
+
+  for (const [attribute, name, expected] of expectedMeta) {
+    const actual = metaTagContent(html, attribute, name);
+    if (actual !== expected) {
+      failures.push(`${file} should set ${name} to ${expected}, got: ${actual || '(missing)'}`);
+    }
+  }
+
+  if (/property="og:image"[^>]*jbnu/i.test(html) || /name="twitter:image"[^>]*jbnu/i.test(html)) {
+    failures.push(`${file} social preview image must not use the Jeonbuk National University logo.`);
+  }
+}
+
+function assertPngDimensions(file, expectedWidth, expectedHeight) {
+  if (!existsSync(file)) return;
+
+  const png = readFileSync(file);
+  const signature = png.subarray(0, 8).toString('hex');
+  if (signature !== '89504e470d0a1a0a') {
+    failures.push(`${file} should be a PNG image.`);
+    return;
+  }
+
+  const width = png.readUInt32BE(16);
+  const height = png.readUInt32BE(20);
+  if (width !== expectedWidth || height !== expectedHeight) {
+    failures.push(`${file} should be ${expectedWidth}x${expectedHeight}, got ${width}x${height}.`);
+  }
+}
 
 for (const file of requiredFiles) {
   if (!existsSync(file)) {
     failures.push(`Missing required file: ${file}`);
   }
 }
+
+assertPngDimensions(socialImagePath, 1200, 630);
 
 for (const file of ['files/logos/jdevops.png', 'files/logos/jbnu-private-llm.png', 'files/logos/jbnu.svg', 'files/logos/regsafe.svg', 'files/logos/lsa.svg', 'files/skills/nodejs.svg', 'files/skills/nginx.svg', 'files/skills/keycloak.svg', 'files/skills/oauth2.svg', 'files/skills/github-actions.svg', 'files/skills/rest-api.svg']) {
   if (existsSync(file)) {
@@ -114,6 +189,8 @@ if (existsSync('index.html')) {
       failures.push(`index.html is missing SEO/accessibility metadata: ${text}`);
     }
   }
+  assertSocialPreview('index.html', html);
+  assertAwards('index.html', html);
 
   const anchorLabels = Array.from(html.matchAll(/<a\b[^>]*>(.*?)<\/a>/gis)).map(([, label]) => label.replace(/<[^>]+>/g, '').trim());
   if (anchorLabels.some((label) => !label || /^(click here|here|link)$/i.test(label))) {
@@ -159,6 +236,8 @@ for (const [file, markers] of [
 ]) {
   if (existsSync(file)) {
     const html = readFileSync(file, 'utf8');
+    assertSocialPreview(file, html);
+    assertAwards(file, html);
     for (const marker of markers) {
       if (!html.includes(marker)) failures.push(`${file} is missing language/page marker: ${marker}`);
     }
